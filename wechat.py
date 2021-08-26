@@ -124,6 +124,14 @@ class Client:
 
 if __name__ == '__main__':
     itchat.auto_login(hotReload=True)
+    print('''使用方法：
+    回车直接发送消息
+    用“@fil@example.pdf”发送名为“example.pdf”的文件
+    类似地用“@img@”发送图片、“@vid@”发送视频
+    _to：更换聊天好友
+    _update：更新好友列表
+    _exit：退出
+    ''')
     with patch_stdout():
         threading.Thread(target=itchat.run, daemon=True).start()
         threading.Thread(target=Client().cmdloop).start()
