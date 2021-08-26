@@ -6,7 +6,9 @@ from prompt_toolkit.patch_stdout import patch_stdout
 
 import threading
 import time
+import os
 import itchat
+import filetype
 
 def timestr():
     return time.strftime('%H:%M')
@@ -41,8 +43,6 @@ def download_files(msg):
     # download it
     content = msg['FileName']
     msg.download(content)
-    # get message time
-    time_ = timestr()
     # get message sender
     if "RemarkName" in msg['User']:
         friend_name = msg['User']['RemarkName'] or msg['User']['NickName']
@@ -51,6 +51,11 @@ def download_files(msg):
     if friend_name == 'filehelper': friend_name = '文件传输助手'
     if msg['Type'] == 'Picture':
         prefix = '@img@'
+        #correct the postfix
+        ext = filetype.guess_extension(content)
+        cname = os.path.splitext(content)[0]+'.'+ext
+        os.rename(content, cname)
+        content = cname
     elif msg['Type'] == 'Video':
         prefix = '@vid@'
     else:
