@@ -4,7 +4,7 @@
     回车直接发送消息
     用“@fil@example.pdf”发送名为“example.pdf”的文件
     类似地用“@img@”发送图片、“@vid@”发送视频
-    _to：更换聊天好友
+    _to 好友名：更换聊天好友
     _update：更新好友列表
     _exit：退出
 
