@@ -110,7 +110,7 @@ class Client:
     def cmdloop(self):
         session = PromptSession()
         while True:
-            line = session.prompt(self.to+'>', completer=self.completer)
+            line = session.prompt(self.to+'>', completer=self.completer, complete_in_thread=True)
             line = line.strip()
             if line == '':
                 continue
@@ -128,11 +128,11 @@ class Client:
                 self.send(line)
 
 if __name__ == '__main__':
-    if os.path.exists('itchat.pkl'):
-        t = os.path.getmtime('itchat.pkl')
-        if time.time()-t>3600:
-            os.remove('itchat.pkl')
-    itchat.auto_login(hotReload=True)
+    # if os.path.exists('itchat.pkl'):
+    #     t = os.path.getmtime('itchat.pkl')
+    #     if time.time()-t>3600:
+    #         os.remove('itchat.pkl')
+    itchat.auto_login(hotReload=False)
     print('''使用方法：
     回车直接发送消息
     用“@fil@example.pdf”发送名为“example.pdf”的文件
